@@ -5,16 +5,17 @@ import sys
 import re
 import pickle
 
+
 enterinput = raw_input()
 
 output = []
 metadata = enterinput
 
 with open('filename.pickle', 'rb') as handle:
-    b = pickle.load(handle)
+    b = pickle.load(handle)   #import filename.pickle as b,referencing to Form
     #print b
     with open('filename2.pickle', 'rb') as f:
-        d = pickle.load(f)
+        d = pickle.load(f)    #import filename2.pickle as b,referencing to generic
 
 
 
@@ -24,7 +25,7 @@ with open('filename.pickle', 'rb') as handle:
              output.append(metadata)
              #print output
 
-             while metadata != 0:
+             while metadata != 0: # to check the metadata reach to outer
                   if b.has_key(b.get(metadata)) == 1:
                       metadata = b.get(metadata)
                       output.append(metadata)
@@ -33,17 +34,16 @@ with open('filename.pickle', 'rb') as handle:
                  #print item
 
                   else:
-                      #if d.has_key(metadata[:-3]):
                       if b.get(metadata) == 0:
                           metadata = b.get(metadata)
                           output.append(metadata)
-                      else:
+                      else:                         #the metadata has the same value
                            metadata = metadata[:-3]
                            output.append(metadata)
                       #else:
                           #break
 
-             for item in reversed(output):
+             for item in reversed(output):  #export the output reversely
                  print item
 
 
